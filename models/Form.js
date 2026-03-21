@@ -30,7 +30,7 @@ const formSchema = new mongoose.Schema({
   panchayat: { type: String, required: true },
   address: { type: String, required: true },
   pincode: { type: String, required: true },
-  pollingStation: { type: String, required: true },
+  pollingStation: { type: String},
   laptop: { type: String, required: true },
   webcam: { type: String, required: true },
 
