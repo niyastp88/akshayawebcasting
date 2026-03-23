@@ -8,10 +8,8 @@ exports.createForm = async (req, res) => {
       success: true,
       data: form,
     });
-
   } catch (err) {
-
-    // 🔥 Duplicate error
+    //  Duplicate error
     if (err.code === 11000) {
       const field = Object.keys(err.keyValue)[0];
 
@@ -21,7 +19,7 @@ exports.createForm = async (req, res) => {
       });
     }
 
-    // 🔥 Validation error (mongoose)
+    // Validation error (mongoose)
     if (err.name === "ValidationError") {
       const message = Object.values(err.errors)[0].message;
 
@@ -48,7 +46,6 @@ exports.getForms = async (req, res) => {
       success: true,
       data: forms,
     });
-
   } catch (err) {
     return res.status(500).json({
       success: false,
@@ -62,11 +59,7 @@ exports.updateStatus = async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
-    const form = await Form.findByIdAndUpdate(
-      id,
-      { status },
-      { new: true }
-    );
+    const form = await Form.findByIdAndUpdate(id, { status }, { new: true });
 
     if (!form) {
       return res.status(404).json({
@@ -79,7 +72,6 @@ exports.updateStatus = async (req, res) => {
       success: true,
       data: form,
     });
-
   } catch (err) {
     return res.status(500).json({
       success: false,
